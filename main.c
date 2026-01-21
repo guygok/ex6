@@ -11,11 +11,11 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    GameState game = {0};
+    GameState game = { 0 };
     game.configMaxHp = atoi(argv[1]);
     game.configBaseAttack = atoi(argv[2]);
 
-    ActionFunc actions[] = {NULL, addRoom, initPlayer, playGame};
+    ActionFunc actions[] = { NULL, addRoom, initPlayer, playGame };
 
     int running = 1;
     while (running) {

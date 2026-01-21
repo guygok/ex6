@@ -42,9 +42,6 @@ static void displayMap(GameState* g) {
     for (int i = 0; i < height; i++) free(grid[i]);
     free(grid);
 }
-/* ============================================================= */
-
-/* ---------- Small helpers (linked list search etc.) ---------- */
 
 static Room* findRoomById(GameState* g, int id) {
     for (Room* r = g->rooms; r; r = r->next)
@@ -130,8 +127,6 @@ static void deathAndExit(GameState* g) {
     exit(0);
 }
 
-/* ===================== Monster functions ===================== */
-
 void freeMonster(void* data) {
     Monster* m = (Monster*)data;
     if (!m) return;
@@ -148,7 +143,6 @@ int compareMonsters(void* a, void* b) {
 
     if (ma->attack != mb->attack) return ma->attack - mb->attack;
 
-    /* Use maxHp as the stable "HP stat" for ordering (not current hp which becomes 0 after fights). */
     if (ma->maxHp != mb->maxHp) return ma->maxHp - mb->maxHp;
 
     return (int)ma->type - (int)mb->type;
@@ -159,8 +153,6 @@ void printMonster(void* data) {
     printf("[%s] Type: %s, Attack: %d, HP: %d\n",
         m->name, monsterTypeStr(m->type), m->attack, m->maxHp);
 }
-
-/* ======================= Item functions ====================== */
 
 void freeItem(void* data) {
     Item* it = (Item*)data;
@@ -186,10 +178,7 @@ void printItem(void* data) {
     printf("[%s] %s - Value: %d\n", itemTypeStr(it->type), it->name, it->value);
 }
 
-/* ======================== Game functions ===================== */
-
 void addRoom(GameState* g) {
-    /* Print current map+legend first */
     if (g->rooms) {
         displayMap(g);
         printLegendDesc(g);
@@ -204,7 +193,6 @@ void addRoom(GameState* g) {
     nr->next = NULL;
 
     if (!g->rooms) {
-        /* First room always at (0,0) */
         nr->x = 0;
         nr->y = 0;
     }
