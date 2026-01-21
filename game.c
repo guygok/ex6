@@ -301,15 +301,9 @@ static void printCurrentRoomStatus(GameState* g) {
     if (r->monster) {
         printf("Monster: %s (HP:%d)\n", r->monster->name, r->monster->hp);
     }
-    else {
-        printf("Monster: None\n");
-    }
 
     if (r->item) {
         printf("Item: %s\n", r->item->name);
-    }
-    else {
-        printf("Item: None\n");
     }
 
     printf("HP: %d/%d\n", g->player->hp, g->player->maxHp);
